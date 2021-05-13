@@ -1,3 +1,7 @@
+# Manga App
+I made an app that it allows the user to visualize a manga list and their respective volumes. It also can add new mangas and filter them by ISBN and genre.
+
+
 ## Application Details
 |               |
 | ------------- |
