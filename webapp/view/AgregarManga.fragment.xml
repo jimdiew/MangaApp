@@ -1,0 +1,93 @@
+<core:FragmentDefinition 
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"> 
+    <Dialog title="Agregar un nuevo Manga" contentHeight="100%" contentWidth="73%" type="Standard" state="Information">
+     <VBox class="sapUiSmallMargin">
+     <f:Form id="FormDisplay354" editable="false">
+                    <f:title>
+                        <core:Title text="Agregar nuevo Manga"/>
+                    </f:title>
+                    <f:layout>
+                        <f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+                            emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <!--ISBN-->
+                                <f:FormElement label="Isbn">
+                                    <f:fields>
+                                        <Input id="inpIsbn" placeholder="ISBN del Manga" value="{oModelManga>Isbn}" required="true"></Input>
+                                    </f:fields>
+                                </f:FormElement>
+
+                                <!--Titulo-->
+                                <f:FormElement label="Titulo">
+                                    <f:fields>
+                                        <Input id="inpTitulo" placeholder="Titulo del Manga" value="{oModelManga>Titulo}" required="true"></Input>
+                                    </f:fields>
+                                </f:FormElement>
+
+                                <!--Autor-->
+                                <f:FormElement label="Autor">
+                                    <f:fields>
+                                        <Input id="inpAutor" placeholder="Autor del Manga" value="{oModelManga>Autor}" required="true"></Input>
+                                    </f:fields>
+                                </f:FormElement>
+
+                                <!--Volumen total--> 
+                                <f:FormElement label="Total de volumenes">
+                                    <f:fields>
+                                        <Input id="inpVolumentotal" placeholder="Total de volumenes" value="{oModelManga>Volumentotal}"></Input>
+                                    </f:fields>
+                                </f:FormElement>
+
+                                <!--Año publicacion-->
+                                <f:FormElement label="Año de Publicacion">
+                                    <f:fields>
+                                        <Input id="inpPublicacion"  placeholder="Año de Publicacion" value="{oModelManga>Publicacion}" required="true"  ></Input>
+                                    </f:fields>
+                                </f:FormElement>
+
+                                <!--Generos
+                                <f:FormElement label="Genero">
+                                    <f:fields>
+                                       <Input id="inpGenero" placeholder="Género" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueGenero" liveChange="onFilterManga"></Input>
+                                       </items>
+                                       </Select>
+                                    </f:fields>
+                                </f:FormElement> -->
+
+                                <!--Adaptacion--> 
+                                <f:FormElement label="Adaptacion">
+                                    <f:fields>
+                                        <ComboBox id="cbAdaptacion" selectedKey="{oModelManga>Adaptacion}">
+                                            <core:Item key="SI" text="SI"/>
+                                            <core:Item key="NO" text="NO"/>
+                                        </ComboBox>
+                                    </f:fields>
+                                </f:FormElement>
+
+                                <!--Finalizado--> 
+                                <f:FormElement label="Finalizado">
+                                    <f:fields>
+                                        <ComboBox id="cbFinalizado" selectedKey="{oModelManga>Finalizado}">
+                                            <core:Item key="SI" text="SI"/>
+                                            <core:Item key="En Emision" text="EN EMISION"/>
+                                        </ComboBox>
+                                    </f:fields>
+                                </f:FormElement>
+
+
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+                <HBox width="100%" alignContent="Center" justifyContent="Center">
+                    <Button text="Guardar" press="onCreate"></Button>
+                </HBox>
+    </VBox>
+    </Dialog>
+</core:FragmentDefinition>

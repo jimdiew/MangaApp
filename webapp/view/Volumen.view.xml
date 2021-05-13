@@ -1,0 +1,47 @@
+<mvc:View
+    controllerName="com.zacademia.zacademiaej1.controller.Volumen"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+>
+<!-- <MessageStrip
+				text="Falta stock"
+				type="Warning"
+				showIcon="true"
+				showCloseButton="true"
+				class="sapUiMediumMarginBottom">
+			</MessageStrip> -->
+
+<Page title="{i18n>titleVol}" showHeader="true" showNavButton="true" navButtonPress="onNavBack">
+    <Table id="tableVolumen" items="{Volumen>/}">
+        <columns>
+            <Column hAlign="Center">
+                <Text text="{i18n>col_isbnvol}"/>
+            </Column>
+                <Column hAlign="Center">
+                <Text text="{i18n>col_numvol}"/>
+            </Column>
+                <Column hAlign="Center">
+                <Text text="{i18n>col_publivol}"/>
+            </Column>
+            <Column hAlign="Center">
+                <Text text="{i18n>col_cantstock}" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem highlight="{path: 'Volumen>Cantidadstock', formatter: '.formatter.highlightCantidadstock'}">
+                <cells>
+                    <ObjectIdentifier text="{Volumen>Isbnvol}"/>
+                    <ObjectIdentifier text="{Volumen>Numvolumen}"/>
+                    <ObjectIdentifier text="{Volumen>Publicacion}"/>
+                    <ObjectStatus text="{path: 'Volumen>Cantidadstock', formatter: '.formatter.textoCantidadstock'}"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+    <content/>
+</Page>
+
+
+</mvc:View>

@@ -1,0 +1,46 @@
+<mvc:View
+    controllerName="com.pampa.zacademiaej.controller.Practica"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:fb="sap.ui.comp.filterbar"
+    displayBlock="true"
+    xmlns="sap.m">
+    <App id="App">
+        <Page id="page" title="{i18n>title}">
+            <fb:FilterBar reset="onReset" search="onSearch"  showGoOnFB="false" showFilterConfiguration="false" showRestoreButton="false" showClearButton="false">
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="Cuil" visibleInFilterBar="true">
+                        <fb:control>
+                            <Input id="_filterCuil" type="Number" placeholder="Ingrese un Cuil de Restaurant" liveChange="onFilterRestaurants" ></Input>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                </fb:filterGroupItems>				
+            </fb:FilterBar>		
+            <Table id="tableResto" items="{/RestaurantSet}">
+                <columns>
+                    <Column>
+                        <Text text="Cuil"/>
+                    </Column>
+                    <Column>
+                        <Text text="Nombre"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>col_rubro}"/>
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text="Habilitado"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onNavegarAPlatos" highlight="{path: 'Habilitado', formatter: '.formatter.highlightHabilitado'}">
+                        <cells>
+                            <ObjectIdentifier text="{Cuil}"/>
+                            <ObjectIdentifier text="{Nombre}"/>
+                            <Text text="{Rubro}"/>
+                            <ObjectStatus icon="sap-icon://building" state="{path: 'Habilitado', formatter: '.formatter.stateHabilitado'}" text="{path: 'Habilitado', formatter: '.formatter.textoHabilitado'}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Page>
+    </App>
+</mvc:View>

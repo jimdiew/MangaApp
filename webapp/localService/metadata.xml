@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZOS_ACADEMIA_JIDI3_SRV" xml:lang="es" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Manga" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Isbn"/>
+                </Key>
+                <Property Name="Isbn" Type="Edm.String" Nullable="false" MaxLength="13" sap:unicode="false" sap:label="Isbn del Manga" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Titulo" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Título del Manga" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Autor" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Nombre y apellido del autor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Volumentotal" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Cantidad de volúmenes" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Publicacion" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Año de publicación inicial" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Generos" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Género de manga" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Adaptacion" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Adaptacion a la TV?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Finalizado" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Finalizado?" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="VolumenSet" Relationship="ZOS_ACADEMIA_JIDI3_SRV.MangaToVolumen" FromRole="FromRole_MangaToVolumen" ToRole="ToRole_MangaToVolumen"/>
+            </EntityType>
+            <EntityType Name="Volumen" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Isbn"/>
+                    <PropertyRef Name="Isbnvol"/>
+                </Key>
+                <Property Name="Isbn" Type="Edm.String" Nullable="false" MaxLength="13" sap:unicode="false" sap:label="Isbn" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Isbnvol" Type="Edm.String" Nullable="false" MaxLength="13" sap:unicode="false" sap:label="Isbn Volumen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Numvolumen" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Número de volúmen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Publicacion" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Año de publicación" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cantidadstock" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Cantidad total de stock" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <NavigationProperty Name="Manga" Relationship="ZOS_ACADEMIA_JIDI3_SRV.MangaToVolumen" FromRole="ToRole_MangaToVolumen" ToRole="FromRole_MangaToVolumen"/>
+            </EntityType>
+            <Association Name="MangaToVolumen" sap:content-version="1">
+                <End Type="ZOS_ACADEMIA_JIDI3_SRV.Manga" Multiplicity="1" Role="FromRole_MangaToVolumen"/>
+                <End Type="ZOS_ACADEMIA_JIDI3_SRV.Volumen" Multiplicity="*" Role="ToRole_MangaToVolumen"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MangaToVolumen">
+                        <PropertyRef Name="Isbn"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MangaToVolumen">
+                        <PropertyRef Name="Isbn"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZOS_ACADEMIA_JIDI3_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="MangaSet" EntityType="ZOS_ACADEMIA_JIDI3_SRV.Manga" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VolumenSet" EntityType="ZOS_ACADEMIA_JIDI3_SRV.Volumen" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="MangaToVolumenSet" Association="ZOS_ACADEMIA_JIDI3_SRV.MangaToVolumen" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MangaSet" Role="FromRole_MangaToVolumen"/>
+                    <End EntitySet="VolumenSet" Role="ToRole_MangaToVolumen"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://stkazhdbaex.eastus2.cloudapp.azure.com:8002/sap/opu/odata/sap/ZOS_ACADEMIA_JIDI3_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://stkazhdbaex.eastus2.cloudapp.azure.com:8002/sap/opu/odata/sap/ZOS_ACADEMIA_JIDI3_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

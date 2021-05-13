@@ -1,0 +1,99 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" controllerName="ns.Academia.controller.Principal"
+	xmlns:f="sap.ui.layout.form" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<VBox>
+							<Table id="table" items="{/RestaurantSet('20336801999')/PlatosSet}">
+								<headerToolbar>
+									<Toolbar>
+										<Title id="tableHeader" text="Platos"/>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+										<Text text="Cuil"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+										<Text text="Id Plato"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+										<Text text="Nombre"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+										<Text text="Tipo"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+										<Text text="Precio"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+										<Text text="Apto Celiaco"/>
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+										<Text text=""/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{Cuil}"/>
+											<Text text="{IdPlato}"/>
+											<Text text="{Nombre}"/>
+											<Text text="{Tipo}"/>
+											<Text text="{Precio}"/>
+											<Text text="{AptoCeliaco}"/>
+											<Button icon="sap-icon://delete" press="borrarPlato" type="Reject"></Button>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+							<f:Form id="FormDisplay354" editable="false">
+								<f:title>
+									<core:Title text="Plato"/>
+								</f:title>
+								<f:layout>
+									<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+										emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Nombre">
+												<f:fields>
+													<Input id="inpNombre" placeholder="Nombre" value="{oModelPlato>Nombre}"></Input>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Tipo">
+												<f:fields>
+													<Input id="inpTipo" value="{oModelPlato>Tipo}"></Input>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Precio">
+												<f:fields>
+													<Input id="inpPrecio" value="{oModelPlato>Precio}"></Input>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Apto Celiaco">
+												<f:fields>
+													<ComboBox id="cbApto" selectedKey="{oModelPlato>AptoCeliaco}">
+														<core:Item key="SI" text="SI"/>
+														<core:Item key="NO" text="NO"/>
+													</ComboBox>
+												</f:fields>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>**/
+							<HBox width="100%" alignContent="Center" justifyContent="Center">
+								<Button text="Guardar" press="onCreate"></Button>
+							</HBox>
+						</VBox>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

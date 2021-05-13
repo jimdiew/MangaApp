@@ -1,0 +1,92 @@
+<mvc:View
+    controllerName="com.zacademia.zacademiaej1.controller.Practica"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:fb="sap.ui.comp.filterbar"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+  
+>
+<Shell>
+<App id="App">
+    
+    <pages>
+        <Page id="page" title="{i18n>title}">
+
+<!-- Filtros-->
+    <fb:FilterBar reset="onReset" search="onSearch"  showGoOnFB="false" showFilterConfiguration="false" showRestoreButton="false" showClearButton="false">
+        <fb:filterGroupItems>
+            <fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="Isbn" visibleInFilterBar="true">
+                <fb:control>
+                    <Input id="_filterIsbn" type="Number" placeholder="Busqueda por ISBN" liveChange="onFilterManga" ></Input>
+                </fb:control>
+            </fb:FilterGroupItem>
+
+    <fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="Generos" visibleInFilterBar="true">
+                <fb:control>
+                    <Input id="_filterGeneros" placeholder="Busqueda por género" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueGeneros" ></Input>
+                </fb:control>
+            </fb:FilterGroupItem>
+        </fb:filterGroupItems>				
+    </fb:FilterBar>
+
+        <HBox width="100%" alignContent="SpaceAround" justifyContent="SpaceAround">
+            <Button text="Cargar Nuevo Manga" press="onClickAgregarMangaFrg"></Button>
+        </HBox>
+
+<!-- Tabla -->
+    <Table id="tableManga" items="{/MangaSet}">
+        <columns>
+            <Column>  
+                <Text text="{i18n>col_isbn}"/>
+            </Column>
+            <Column>
+                <Text text="{i18n>col_titulo}"/>
+            </Column>
+                <Column>
+                <Text text="{i18n>col_autor}"/>
+            </Column>
+                <Column hAlign="Center" width="10%">
+                <Text text="{i18n>col_voltotal}"/>
+            </Column>
+            <Column hAlign="Center">
+                <Text text="{i18n>col_publi}" />
+            </Column>
+            <Column width="8%">
+                <Text text="{i18n>col_generos}"/>
+            </Column>
+            <Column hAlign="Center" width="8%">
+                <Text text="{i18n>col_adaptacion}"/>
+            </Column>
+            <Column hAlign="Center">
+                <Text text="{i18n>col_finalizado}"/>
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem type="Navigation" press="onNavegarAVolumen" highlight="{path: 'Finalizado', formatter: '.formatter.highlightFinalizado'}">
+                <cells>
+                    <ObjectIdentifier text="{Isbn}"/>
+                    <ObjectIdentifier text="{Titulo}"/>
+                    <ObjectIdentifier text="{Autor}"/>
+                    <ObjectIdentifier text="{Volumentotal}"/>
+                    <ObjectIdentifier text="{Publicacion}"/>
+                    <Text text="{Generos}"/>
+                    <ObjectStatus icon="sap-icon://sys-monitor"  text="{path: 'Adaptacion', formatter: '.formatter.textoAdaptacion'}"/>
+                    <ObjectStatus icon="sap-icon://education" state="{path: 'Finalizado', formatter: '.formatter.stateFinalizado'}" text="{path: 'Finalizado', formatter: '.formatter.textoFinalizado'}"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+
+        
+
+            <content/>
+       
+        </Page>
+    </pages>
+    
+</App>
+</Shell>
+
+</mvc:View>
